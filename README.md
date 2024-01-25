@@ -11,7 +11,6 @@ tests were running faithfully and reliably.
 Everything here has be tested on **Elementary OS 5.1.7 Hera** (based on _Ubuntu 18.04_). I've used
 **Docker 19.03.12-19.03.13**, **Docker Compose 1.26.1** and **Python 3.8.3-3.9.0**.
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=aorestr_selenium-in-docker&metric=alert_status)](https://sonarcloud.io/dashboard?id=aorestr_selenium-in-docker)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
 #### Tests
@@ -30,7 +29,9 @@ Running the following command will work:
 `
 wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz && tar zxf /tmp/geckodriver.tgz -C ./selenium_tests/ && rm /tmp/geckodriver.tgz
 `
+   1) NOTA PROPIA: Dejar el "geckodriver" dentro de la subcarpeta "selenium_tests". 
 5) Finally, simply run: `pytest`
+   1) NOTA PROPIA: Ejecutar `pytest` dentro de la carpeta "selenium_tests".
 
 ## Running the tests using containers
 ### The images

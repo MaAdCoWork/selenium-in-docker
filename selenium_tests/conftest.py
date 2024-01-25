@@ -5,6 +5,7 @@ import pathlib
 from typing import Final
 import pytest
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
@@ -48,7 +49,9 @@ def get_driver(request) -> WebDriver:
             ), DesiredCapabilities.FIREFOX
         )
     else:
-        driver = webdriver.Firefox(executable_path=GECKODRIVER_PATH)
+        options = Options()
+        options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+        driver = webdriver.Firefox(executable_path=GECKODRIVER_PATH, options=options)
     driver.implicitly_wait(IMPLICITLY_WAIT)
     yield driver
     driver.close()

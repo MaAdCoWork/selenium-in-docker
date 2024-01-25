@@ -11,9 +11,9 @@ class BasePage(object):
     Base class to initialize the base page that will be called from all pages
     """
 
-    BASE_URL: Final = "http://automationpractice.com/index.php"
+    BASE_URL: Final = "http://www.automationpractice.pl/index.php"
     page_uri = ""
-    BASE_TITLE: Final = "My Store"
+    BASE_TITLE: Final = "My Shop"
     specific_title = ""
 
     def __init__(self, driver: WebDriver):

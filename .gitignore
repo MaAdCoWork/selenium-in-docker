@@ -3,7 +3,7 @@
 .vscode/
 
 # Browsers drivers
-geckodriver*
+selenium_tests/geckodriver.exe
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

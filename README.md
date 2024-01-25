@@ -23,6 +23,7 @@ We are using Docker, so there's no need of running the tests locally. But if you
 
 1) Make sure you are on the `selenium_tests/` root.
 2) Set a Python virtual environment. Activate it.
+   1) NOTA PROPIA: Se necesita "python 3.11" (en mi caso, usé 3.11.7 en la Dell Latitude 7400). 
 3) Install all the dependencies defined on `selenium_tests/requirements.txt` (`pip install -r requirements.txt`).
 4) Download the last version of the Geckodriver (we will use Firefox as browser, so we assume you got it install on your system).
 Running the following command will work:

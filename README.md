@@ -23,16 +23,16 @@ We are using Docker, so there's no need of running the tests locally. But if you
 
 1) Make sure you are on the `selenium_tests/` root.
 2) Set a Python virtual environment. Activate it.
-   1) NOTA PROPIA: Se necesita "python 3.11" (en mi caso, usé 3.11.7 en la Dell Latitude 7400). 
+   1) _**NOTA PROPIA**_: Se necesita "python 3.11" (en mi caso, usé 3.11.7 en la Dell Latitude 7400). 
 3) Install all the dependencies defined on `selenium_tests/requirements.txt` (`pip install -r requirements.txt`).
 4) Download the last version of the Geckodriver (we will use Firefox as browser, so we assume you got it install on your system).
 Running the following command will work:
 `
 wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz && tar zxf /tmp/geckodriver.tgz -C ./selenium_tests/ && rm /tmp/geckodriver.tgz
 `
-   1) NOTA PROPIA: Dejar el "geckodriver" dentro de la subcarpeta "selenium_tests". 
+   1) _**NOTA PROPIA**_: Dejar el "geckodriver" dentro de la subcarpeta "selenium_tests". 
 5) Finally, simply run: `pytest`
-   1) NOTA PROPIA: Ejecutar `pytest` dentro de la carpeta "selenium_tests".
+   1) _**NOTA PROPIA**_: Ejecutar `pytest` dentro de la carpeta "selenium_tests".
 
 ## Running the tests using containers
 ### The images
@@ -77,6 +77,9 @@ This is easily the simplest way of running your tests. Once your test files are 
 ```
 docker-compose up --abort-on-container-exit --remove-orphans 
 ```
+_**NOTA PROPIA**_: Si al ejecutar el comando "docker-compose up" todo sigue fallando, a pesar que los test funcionen localmente,
+probar eliminando el contenedor e imágenes utilizadas (la del host, de selenium hub y el nodo firefox)._
+
 The _pytest-host_ image will always be built so new changes will be implemented. Then all the containers will be
 deployed and the tests run.
 

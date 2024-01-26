@@ -16,7 +16,7 @@ Everything here has be tested on **Elementary OS 5.1.7 Hera** (based on _Ubuntu 
 #### Tests
 I've developed a small testing application under `selenium_tests/`. It uses **Pytest** as testing framework.
 The tests are developed implementing a page object pattern.
-They are run against the web _http://automationpractice.com_, which seems to be a webpage to use in cases like this.
+They are run against the web _http://www.automationpractice.pl/index.php_, which seems to be a webpage to use in cases like this.
 
 ## Running the tests locally (not recommended)
 We are using Docker, so there's no need of running the tests locally. But if you really want it, here it is a how to:

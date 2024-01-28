@@ -36,9 +36,15 @@ wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckod
 
 ## Running the tests using containers
 #### Deploy the scenario and run all the tests
-Funciona con una sola imagen que combina "pyhton" + "firefox", pudiendose ejecutar con el siguiente comando:
+Funciona con una sola imagen que combina Pyhton + Firefox, pudiendose ejecutar con el siguiente comando:
 ```
 docker build . -t selenium-in-docker_python-front-firefox:v0.1
 ```
+
+Si se llega a ver que la consola colapsa los pasos una vez realizados, utilizando una tonalidad azul, sin llegar a poder ver los resultaos de cada paso, se debe a que utiliza la alternativa propuesta en https://github.com/moby/buildkit/issues/1837#issuecomment-977135975, que menciona usar el siguiente comando:
+```
+docker build . -t selenium-in-docker_python-front-firefox:v0.1 --no-cache --progress=plain
+```
+
 _**NOTA PROPIA**_: Si al ejecutar el comando varias veces sigue fallando sin importar los cambios, a pesar que los test funcionen localmente,
 probar eliminando el contenedor e imagen creada.

@@ -1,14 +1,16 @@
-#################################
-### Downloads the waiter file ###
-#################################
-FROM byrnedo/alpine-curl:0.1.8 as curl
-# This file makes the container wait for another to be ready before running some other thing
-RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > wait-for-it.sh
+# Usa una imagen base de Python
+FROM python:3.11
 
-##################################
-### Set the Pytest environment ###
-##################################
-FROM python:3.9.0-alpine
+# Actualiza e instala las dependencias necesarias, junto con Firefox
+RUN apt-get update \
+    && apt-get install -y firefox-esr \
+    && apt-get -y install coreutils \ 
+    && rm -rf /var/lib/apt/lists/* \
+    && which firefox
+
+# Install GeckoDriver
+ADD https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz /usr/local/bin/
+RUN tar -xzf /usr/local/bin/geckodriver-v0.34.0-linux64.tar.gz -C /usr/local/bin/
 
 # Set the working directory
 WORKDIR /selenium_tests/
@@ -16,13 +18,8 @@ WORKDIR /selenium_tests/
 # Copy the folder with the tests into the container
 COPY selenium_tests/ /selenium_tests/
 
-# Copy the waiter
-COPY --from=curl wait-for-it.sh wait-for-it.sh
-RUN chmod +x wait-for-it.sh
-RUN apk add bash
-
 # Install all dependencies
 RUN pip install -r requirements.txt
 
-# This Dockerfile hasn't got any CMD or ENTRYPOINT so it doesn't do anything by its own.
-# Check docker-compose.yml to see an implementation of the image
+# Ejecutar las pruebas
+RUN pytest -v

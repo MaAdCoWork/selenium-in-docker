@@ -2,13 +2,13 @@
 
 import os.path
 import pathlib
+import platform
 from typing import Final
 import pytest
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
 
 IMPLICITLY_WAIT: Final[int] = 30
 GECKODRIVER_PATH: Final[str] = os.path.join(pathlib.Path(__file__).parent.absolute(), "geckodriver")
@@ -50,7 +50,14 @@ def get_driver(request) -> WebDriver:
         )
     else:
         options = Options()
-        options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+        options.add_argument("--headless")
+        if platform.system() == "Linux":
+            ### options.binary_location = r'/browsers/firefox'
+            ### GECKODRIVER_PATH = r'/drivers/geckodriver'
+            options.binary_location = r'/usr/bin/firefox'
+            GECKODRIVER_PATH = r'/usr/local/bin/geckodriver'
+        else:
+            options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
         driver = webdriver.Firefox(executable_path=GECKODRIVER_PATH, options=options)
     driver.implicitly_wait(IMPLICITLY_WAIT)
     yield driver
